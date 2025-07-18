@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins, sans-serif;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+.header{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.7)), url(images/header-image.png);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    /* position: relative;   */
+    /* border: 3px solid red; */
+}
+
+nav{
+    /* border: 3px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.logo{
+    width: 150px;
+    cursor: pointer;
+}
+
+nav button{
+    cursor: pointer;
+    /* outiline: 10px solid red; */
+    /* border: none; */
+    background: red;
+    color: white;
+    padding: 7px 15px;
+    font-size: 15px;
+    border-radius: 100px;
+    margin-left: 10px;
+}
+
+nav button:nth-child(2){
+    background: white;
+    color: black;
+}
+
+nav button img{
+    width: 7px;
+    margin-left: 100px;
+}
+
+.language-btn{
+    width: 200px;
+    /* display: inline-flex; */
+    /* align-items: center; */
+    border: 1px solid white;
+    background: transparent;
+    padding: 7px 7px;
+}
+
+.header-container{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 250px;
+    border: 1px solid red;
+}
+
+.header-container h1{
+    /* justify-content: center; */
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    /* line-height: 70px; */
+    /* border: 1px solid red; */
+    /* width: 650px; */
+}
+
+.header-container h2{
+    margin-bottom: 40px;
+}
+
+.input-container{
+    /* background-color: aliceblue; */
+    /* border-radius: 100px; */
+    /* width: 450px; */
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+
+.input-container input{
+    flex: 1;
+    /* border: none; */
+    border-radius: 100px;
+    padding: 10px 20px; 
+    /* margin-left: 20px */
+}
+
+.input-container button{
+    border-radius: 100px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px; 
+}

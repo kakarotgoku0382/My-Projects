@@ -1,0 +1,442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+/* Login Sections */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-section input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+}
+
+.login-section input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.login-btn, .admin-btn, .back-btn, .update-btn, .publish-btn, .reset-btn, .logout-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.admin-btn {
+    background: #ffa726;
+    color: white;
+}
+
+.back-btn {
+    background: #78909c;
+    color: white;
+}
+
+.update-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.publish-btn {
+    background: #2196f3;
+    color: white;
+}
+
+.reset-btn {
+    background: #ff6b6b;
+    color: white;
+}
+
+.logout-btn {
+    background: #9e9e9e;
+    color: white;
+}
+
+.login-btn:hover, .admin-btn:hover, .back-btn:hover, .update-btn:hover, 
+.publish-btn:hover, .reset-btn:hover, .logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-link {
+    margin-top: 10px;
+}
+
+/* Welcome Message */
+.welcome-message {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* Voting Section */
+.voting-section {
+    margin-bottom: 40px;
+}
+
+.candidate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.candidate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+}
+
+.candidate-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.candidate-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.candidate-name {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+}
+
+.vote-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.vote-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.vote-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.vote-confirmation {
+    background: #4caf50;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.vote-confirmation h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.vote-confirmation p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+/* Admin Dashboard */
+.admin-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.admin-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.candidate-edit {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.candidate-edit label {
+    min-width: 120px;
+    font-weight: 600;
+    color: #333;
+}
+
+.candidate-edit input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.candidate-edit input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Results Section */
+.results-section {
+    margin-top: 20px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.result-bar {
+    flex: 1;
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 10px;
+    margin: 0 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.result-fill {
+    height: 100%;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.result-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.vote-count {
+    font-weight: 600;
+    color: #333;
+    min-width: 100px;
+    text-align: right;
+}
+
+.total-votes {
+    font-size: 1.2em;
+    color: #667eea;
+    font-weight: 600;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.winner-announcement {
+    background: linear-gradient(45deg, #4caf50, #45a049);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.voter-list {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.voter-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.voter-item:last-child {
+    border-bottom: none;
+}
+
+.voter-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.voter-choice {
+    color: #667eea;
+    font-size: 0.9em;
+}
+
+.public-results {
+    text-align: center;
+}
+
+.public-results .result-item {
+    background: white;
+    border: 2px solid #667eea;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        max-height: 95vh;
+    }
+    
+    .candidate {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .result-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .result-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .candidate-edit {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .candidate-edit label {
+        min-width: auto;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .admin-controls {
+        gap: 20px;
+    }
+}
