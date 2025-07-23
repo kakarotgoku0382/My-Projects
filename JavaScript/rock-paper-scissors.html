@@ -16,8 +16,28 @@
     <button onclick="
 		getResult('Scissors');
 	">Scissors</button>
+
+	<button onclick="
+		score.wins = 0;
+		score.losses = 0;
+		score.ties = 0;
+		
+alert(`Score Reset!
+Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+
+	">Reset Button</button>
 </body>
 <script>
+	let score = JSON.parse(localStorage.getItem('score'));
+	
+	if (!score){
+		score = {
+			wins: 0,
+			losses: 0,
+			ties: 0
+		};
+	};
+
 	function pickMove(){
 		const random = Math.random();
 		let compMove = '';
@@ -37,16 +57,26 @@
 	    const compMove = pickMove();
 		let result = '';
 
-		if (compMove === playerMove)
+		if (compMove === playerMove){
 			result = 'Game Tie!';
+			score.ties++;
+		}
 		else if ((compMove === 'Paper' && playerMove === 'Scissors') ||
 				 (compMove === 'Rock' && playerMove === 'Paper') ||
-				 (compMove === 'Scissors' && playerMove === 'Rock'))
-			result = 'You Win!';
-		else 
+				 (compMove === 'Scissors' && playerMove === 'Rock')){
+					 result = 'You Win!';
+					 score.wins++;
+				 }
+		else {
 			result = 'You Lose!';
+			score.losses++;
+		}
 		// return result;
-	alert(`You Picked ${playerMove}. Computer picked ${compMove}. ${result}`);
+		localStorage.setItem('score', JSON.stringify(score));
+
+alert(`You Picked ${playerMove}. Computer picked ${compMove}. ${result}
+Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+
 	}
 </script>
 </html>
