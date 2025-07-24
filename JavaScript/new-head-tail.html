@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heads or Tails</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-xl shadow-lg text-center w-full max-w-md mx-4">
+        
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Heads or Tails</h1>
+
+        <!-- Game Buttons -->
+        <div class="flex justify-center space-x-4 mb-6">
+            <button onclick="playGame('head')" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-transform transform hover:scale-105">
+                Head
+            </button>
+            <button onclick="playGame('tail')" class="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition-transform transform hover:scale-105">
+                Tail
+            </button>
+        </div>
+
+        <!-- Result Display -->
+        <p id="js-result" class="text-lg text-gray-700 font-medium min-h-[2.5em] my-4"></p>
+
+        <!-- Score Display -->
+        <p id="js-score" class="text-xl text-gray-800 font-bold"></p>
+        
+        <!-- Reset Button -->
+        <div class="mt-8">
+             <button onclick="resetScore()" class="px-6 py-2 bg-red-600 text-white font-medium rounded-lg shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition-colors">
+                Reset Score
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Load score from localStorage or set to default
+        let score = JSON.parse(localStorage.getItem('score')) || {
+            win: 0,
+            lose: 0
+        };
+
+        // Get references to the HTML elements we will update
+        const resultElement = document.getElementById('js-result');
+        const scoreElement = document.getElementById('js-score');
+
+        // Immediately display the initial score when the page loads
+        updateScoreElement();
+
+        function guess() {
+            const random = Math.random();
+            return random < 0.5 ? 'head' : 'tail';
+        }
+
+        function playGame(playerGuess) {
+            const compGuess = guess();
+            let result = '';
+
+            if (playerGuess === compGuess) {
+                result = 'You Win!';
+                score.win++;
+            } else {
+                result = 'You Lose!';
+                score.lose++;
+            }
+            
+            // Save the new score to localStorage
+            localStorage.setItem('score', JSON.stringify(score));
+
+            // Update the result and score display on the page
+            resultElement.innerHTML = `You picked: <span class="font-bold">${playerGuess}</span>. Coin flips to: <span class="font-bold">${compGuess}</span>. <span class="font-bold">${result}</span>`;
+            updateScoreElement();
+        }
+
+        function resetScore() {
+            // Reset the score object
+            score.win = 0;
+            score.lose = 0;
+            
+            // Remove the score from localStorage
+            localStorage.removeItem('score');
+            
+            // Update the display
+            resultElement.innerHTML = 'Score has been reset.';
+            updateScoreElement();
+        }
+
+        function updateScoreElement() {
+            scoreElement.innerHTML = `Wins: ${score.win}, Losses: ${score.lose}`;
+        }
+    </script>
+
+</body>
+</html>
