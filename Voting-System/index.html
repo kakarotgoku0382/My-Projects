@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Voting System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- User Login Section -->
+    <div class="container" id="user-login-section">
+        <h1>🗳️ Advanced Voting System</h1>
+        <div class="login-section">
+            <h2>Enter Your Name to Vote</h2>
+            <input type="text" id="user-name" placeholder="Enter your full name" maxlength="50">
+            <button class="login-btn" onclick="userLogin()">Continue to Vote</button>
+            <div class="admin-link">
+                <button class="admin-btn" onclick="showAdminLogin()">Admin Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Section -->
+    <div class="container hidden" id="admin-login-section">
+        <h1>🔐 Admin Login</h1>
+        <div class="login-section">
+            <input type="text" id="admin-username" placeholder="Username">
+            <input type="password" id="admin-password" placeholder="Password">
+            <button class="login-btn" onclick="adminLogin()">Login as Admin</button>
+            <button class="back-btn" onclick="showUserLogin()">Back to User Login</button>
+        </div>
+    </div>
+
+    <!-- User Voting Section -->
+    <div class="container hidden" id="user-voting-section">
+        <h1>🗳️ Cast Your Vote</h1>
+        <div class="welcome-message">
+            <p>Welcome, <span id="current-user-name"></span>!</p>
+        </div>
+        
+        <div class="voting-section">
+            <div class="candidate" data-candidate="candidate1">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">1</div>
+                    <div class="candidate-name" id="candidate1-name">Alice Johnson</div>
+                </div>
+                <button class="vote-btn" onclick="vote('candidate1')">Vote</button>
+            </div>
+            
+            <div class="candidate" data-candidate="candidate2">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">2</div>
+                    <div class="candidate-name" id="candidate2-name">Bob Smith</div>
+                </div>
+                <button class="vote-btn" onclick="vote('candidate2')">Vote</button>
+            </div>
+            
+            <div class="candidate" data-candidate="candidate3">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">3</div>
+                    <div class="candidate-name" id="candidate3-name">Carol Wilson</div>
+                </div>
+                <button class="vote-btn" onclick="vote('candidate3')">Vote</button>
+            </div>
+            
+            <div class="candidate" data-candidate="candidate4">
+                <div class="candidate-info">
+                    <div class="candidate-avatar">4</div>
+                    <div class="candidate-name" id="candidate4-name">David Brown</div>
+                </div>
+                <button class="vote-btn" onclick="vote('candidate4')">Vote</button>
+            </div>
+        </div>
+        
+        <div class="vote-confirmation hidden" id="vote-confirmation">
+            <h3>✅ Vote Submitted Successfully!</h3>
+            <p>Thank you for voting. Results will be announced by the admin.</p>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Section -->
+    <div class="container hidden" id="admin-dashboard-section">
+        <h1>👑 Admin Dashboard</h1>
+        <div class="admin-controls">
+            <div class="admin-section">
+                <h3>Candidate Management</h3>
+                <div class="candidate-edit">
+                    <label>Candidate 1:</label>
+                    <input type="text" id="edit-candidate1" placeholder="Candidate 1 name">
+                </div>
+                <div class="candidate-edit">
+                    <label>Candidate 2:</label>
+                    <input type="text" id="edit-candidate2" placeholder="Candidate 2 name">
+                </div>
+                <div class="candidate-edit">
+                    <label>Candidate 3:</label>
+                    <input type="text" id="edit-candidate3" placeholder="Candidate 3 name">
+                </div>
+                <div class="candidate-edit">
+                    <label>Candidate 4:</label>
+                    <input type="text" id="edit-candidate4" placeholder="Candidate 4 name">
+                </div>
+                <button class="update-btn" onclick="updateCandidates()">Update Candidates</button>
+            </div>
+
+            <div class="admin-section">
+                <h3>Voting Results</h3>
+                <div class="results-section">
+                    <div class="result-item">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">1</div>
+                            <div class="candidate-name" id="result-candidate1-name">Alice Johnson</div>
+                        </div>
+                        <div class="result-bar">
+                            <div class="result-fill" id="candidate1-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="vote-count" id="candidate1-count">0 votes</div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">2</div>
+                            <div class="candidate-name" id="result-candidate2-name">Bob Smith</div>
+                        </div>
+                        <div class="result-bar">
+                            <div class="result-fill" id="candidate2-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="vote-count" id="candidate2-count">0 votes</div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">3</div>
+                            <div class="candidate-name" id="result-candidate3-name">Carol Wilson</div>
+                        </div>
+                        <div class="result-bar">
+                            <div class="result-fill" id="candidate3-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="vote-count" id="candidate3-count">0 votes</div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">4</div>
+                            <div class="candidate-name" id="result-candidate4-name">David Brown</div>
+                        </div>
+                        <div class="result-bar">
+                            <div class="result-fill" id="candidate4-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="vote-count" id="candidate4-count">0 votes</div>
+                    </div>
+                    
+                    <div class="total-votes" id="total-votes">Total Votes: 0</div>
+                    <div class="winner-announcement" id="winner-announcement"></div>
+                </div>
+
+                <div class="admin-actions">
+                    <button class="publish-btn" onclick="publishResults()">Publish Winner</button>
+                    <button class="reset-btn" onclick="resetVotes()">Reset All Votes</button>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Voter List</h3>
+                <div class="voter-list" id="voter-list">
+                    <p>No votes cast yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Public Results Section -->
+    <div class="container hidden" id="public-results-section">
+        <h1>🏆 Voting Results</h1>
+        <div class="results-section">
+            <div class="winner-announcement" id="public-winner-announcement"></div>
+            <div class="public-results" id="public-results">
+                <!-- Results will be displayed here when published -->
+            </div>
+            <button class="back-btn" onclick="showUserLogin()">Back to Voting</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
