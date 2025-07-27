@@ -17,13 +17,18 @@
 		getResult('Scissors');
 	">Scissors</button>
 
+	<p class="js-result"></p>
+	<p class="js-moves"></p>
+	<p class="js-score"></p>
+
 	<button onclick="
 		score.wins = 0;
 		score.losses = 0;
 		score.ties = 0;
 		localStorage.removeItem('score'); 
-alert(`Score Reset!
-Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+		updateScore();
+// alert(`Score Reset!
+// Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 
 	">Reset Button</button>
 </body>
@@ -33,6 +38,13 @@ Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 			losses: 0,
 			ties: 0
 		};
+
+
+
+		function updateScore(){
+			document.querySelector('.js-score')
+				.innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+		}
 
 	function pickMove(){
 		const random = Math.random();
@@ -67,12 +79,19 @@ Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 			result = 'You Lose!';
 			score.losses++;
 		}
-		// return result;
 		localStorage.setItem('score', JSON.stringify(score));
 
-alert(`You Picked ${playerMove}. Computer picked ${compMove}. ${result}
-Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+		document.querySelector('.js-result')
+			.innerHTML = result;
 
+		document.querySelector('.js-moves')
+			.innerHTML = `You Picked ${playerMove}. Computer picked ${compMove}`;
+
+		updateScore();
+
+// alert(`You Picked ${playerMove}. Computer picked ${compMove}. ${result}
+// Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+		return result;
 	}
 </script>
 </html>

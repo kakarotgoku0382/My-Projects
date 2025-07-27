@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart Quantity</title>
 </head>
+
 <body>
     <button onclick="
-        console.log('Cart Quantity:', cartQuantity);
-        alert('Cart quantity: ' + cartQuantity);    
+        showQuantity();
+        // console.log('Cart Quantity:', cartQuantity);
+        // alert('Cart quantity: ' + cartQuantity);    
     ">Show Cart Quantity</button>
 
     <button onclick="
         cartQuantity++;
-        console.log(`Cart Quantity: ${cartQuantity}`);
-        alert('Cart Quantity:' + cartQuantity);
+        showQuantity();
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        // alert('Cart Quantity:' + cartQuantity);
     ">Add to Cart</button>
-    
+
     <button onclick="
-        cartQuantity+=2
-        console.log(`Cart Quantity: ${cartQuantity}`);
-        alert('Cart Quantity increases to 2');
+        cartQuantity+=2;
+        showQuantity();
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        // alert('Cart Quantity increases to 2');
     ">+2</button>
-    
+
     <button onclick="
         cartQuantity+=3;
-        console.log(`Cart Quantity: ${cartQuantity}`);
-        alert('Cart Quantity: ' + cartQuantity);
+        showQuantity();
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        // alert('Cart Quantity: ' + cartQuantity);
     ">+3</button>
-    
+
+    <button onclick="
+        cartQuantity--;
+        showQuantity();
+    ">Remove Item</button>
+
     <button onclick="
         cartQuantity =0;
-        console.log(`Cart Quantity: ${cartQuantity}`);
-        alert('Cart Quantity reset to ' + cartQuantity);
+        showQuantity();
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        // alert('Cart Quantity reset to ' + cartQuantity);
     ">Reset Cart</button>
-    
-    <script>
-        let cartQuantity = 0;
-    </script>
+
+    <p class="js-show-quantity"></p>
+
+
 </body>
+<script>
+    let cartQuantity = 0;
+    function showQuantity() {
+        document.querySelector('.js-show-quantity')
+            .innerHTML = `Cart Quantity: ${cartQuantity}`;
+    }
+</script>
 </html>

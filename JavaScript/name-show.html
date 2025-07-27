@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NAME SHOW</title>
+</head>
+<body>
+	<button onclick="
+		result('head');
+	" class="head-tail">Head</button>
+
+	<button onclick="
+		result('tail');
+	"class="head-tail">Tail</button>
+
+	<p class="js-message"></p>
+
+	<input placeholder="Enter your name!" class="name" onkeydown="
+		enterKey(event);
+	">
+	
+	<button onclick="
+		showName();
+	">Submit</button>
+
+	<p class="js-name"></p>
+
+</body>
+<script>
+	function result(message){
+		
+		if (message === 'head'){
+			document.querySelector('.js-message')
+				.innerHTML = 'You choose Head!';
+		} else if (message === 'tail') {
+			document.querySelector('.js-message')
+				.innerHTML = 'You choose Tail!';
+		}
+	}
+
+	function showName(){
+		const name = document.querySelector('.name').value;
+
+		document.querySelector('.js-name')
+			.innerHTML = `Hi ${name}`;
+	}
+	function enterKey(event){
+		if(event.key === 'Enter')
+			showName();
+	}
+</script>
+</html>
